@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil IRMAWATI, S.Pd - UPT SPF SMP Negeri 3 Makassar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Icon Modern -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            animation: {
+              'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              pulseSubtle: {
+                '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                '50%': { opacity: '.92', transform: 'scale(1.02)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Efek Backdrop Blur Kustom */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      .dark .glass-card {
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      /* Gaya Scrollbar Kustom */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.3);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.5);
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col items-center justify-between p-4 transition-colors duration-300">
+    
+    <!-- Ornamen Latar Belakang Estetik -->
+    <div class="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-300/30 dark:bg-purple-900/10 blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-300/30 dark:bg-indigo-900/10 blur-[120px] pointer-events-none z-0"></div>
+
+    <!-- Container Utama -->
+    <main class="w-full max-w-md my-auto relative z-10 flex flex-col items-center">
+      
+      <!-- Panel Atas: Toggle Tema & Tombol Bagikan -->
+      <div class="w-full flex justify-between items-center mb-6 px-2">
+        <!-- Tombol Bagikan -->
+        <button onclick="shareProfile()" class="glass-card hover:bg-white/90 dark:hover:bg-slate-800/90 text-slate-600 dark:text-slate-300 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 active:scale-95 shadow-sm" title="Bagikan Tautan">
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+        <!-- Logo Sekolah / Lencana -->
+        <div class="flex items-center gap-2 px-3 py-1.5 glass-card rounded-full text-xs font-semibold tracking-wide text-indigo-600 dark:text-indigo-400 uppercase">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>SMPN 3 Makassar</span>
+        </div>
+        <!-- Toggle Tema -->
+        <button onclick="toggleDarkMode()" class="glass-card hover:bg-white/90 dark:hover:bg-slate-800/90 text-slate-600 dark:text-slate-300 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 active:scale-95 shadow-sm" title="Ubah Tema">
+          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+
+      <!-- Bagian Profil -->
+      <section class="text-center w-full mb-6">
+        <div class="relative inline-block group">
+          <!-- Efek Glow Ring di belakang foto -->
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full blur opacity-45 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-pulse-subtle"></div>
+          
+          <!-- Foto Profil dengan penanganan error fallback -->
+          <div class="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl bg-slate-100 flex items-center justify-center">
+            <img 
+              id="profile-img" 
+              src="logo.jpeg" 
+              alt="Foto Profil IRMAWATI, S.Pd" 
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+              onerror="handleImageError()"
+            />
+          </div>
+          <!-- Badge Guru Terverifikasi -->
+          <span class="absolute bottom-1 right-1 bg-indigo-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-slate-800" title="Guru Terverifikasi">
+            <i class="fa-solid fa-check"></i>
+          </span>
+        </div>
+
+        <h1 class="text-2xl font-extrabold tracking-tight mt-4 text-slate-900 dark:text-white">
+          IRMAWATI, S.Pd
+        </h1>
+        <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-wider uppercase mt-1">
+          Guru Bahasa Indonesia
+        </p>
+        
+        <div class="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-2 bg-slate-200/50 dark:bg-slate-800/40 px-3 py-1 rounded-full">
+          <i class="fa-solid fa-location-dot text-rose-500"></i>
+          <span>UPT SPF SMP Negeri 3 Makassar</span>
+        </div>
+      </section>
+
+      <!-- Input Pencarian (Sangat berguna untuk mencari tautan dengan cepat) -->
+      <div class="w-full mb-4 px-1">
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+          <input 
+            type="text" 
+            id="search-input" 
+            oninput="filterLinks()" 
+            placeholder="Cari tautan modul, laporan..." 
+            class="w-full pl-10 pr-4 py-3 rounded-2xl glass-card focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm placeholder-slate-400 transition-all shadow-sm"
+          />
+        </div>
+      </div>
+
+      <!-- Tab Filter Kategori -->
+      <div class="w-full flex gap-1.5 overflow-x-auto pb-2 px-1 mb-4 scrollbar-none" id="categories-container">
+        <button onclick="filterCategory('all')" id="tab-all" class="category-tab px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 bg-indigo-600 text-white shadow-md shadow-indigo-500/20">
+          Semua
+        </button>
+        <button onclick="filterCategory('kurikulum')" id="tab-kurikulum" class="category-tab px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 bg-white/60 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+          Kurikulum
+        </button>
+        <button onclick="filterCategory('laporan')" id="tab-laporan" class="category-tab px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 bg-white/60 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+          Laporan
+        </button>
+        <button onclick="filterCategory('input')" id="tab-input" class="category-tab px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 bg-white/60 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+          Input Data
+        </button>
+      </div>
+
+      <!-- Daftar Tautan (Link List) -->
+      <div id="links-container" class="w-full flex flex-col gap-3.5 mb-8">
+        <!-- Link Items dynamically category-tagged -->
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="kurikulum">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">CAPAIAN PEMBELAJARAN</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Kurikulum</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="kurikulum">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">TP DAN ATP</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Kurikulum</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="kurikulum">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-950/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">MODUL AJAR</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Kurikulum</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="laporan">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">JURNAL PEMBELAJARAN</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Laporan</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="laporan">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">LAPORAN GURU WALI</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Laporan</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="laporan">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-user-clock"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">LAPORAN KEGIATAN PIKET</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Laporan</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="laporan">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-medal"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">LAPORAN KOKURIKULER</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Laporan</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="input">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">INPUT JURNAL PEMBELAJARAN</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Input Data</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="input">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-fuchsia-100 dark:bg-fuchsia-950/50 text-fuchsia-600 dark:text-fuchsia-400 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-file-circle-check"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">INPUT LAPORAN GURU WALI</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Input Data</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+
+        <a href="#" class="link-card flex items-center justify-between p-4 glass-card rounded-2xl hover:translate-x-1.5 hover:shadow-md hover:bg-white dark:hover:bg-slate-800/80 transition-all duration-300 group" data-category="input">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center text-lg shadow-inner">
+              <i class="fa-solid fa-building-user"></i>
+            </div>
+            <div>
+              <span class="font-semibold text-sm block">G7KAIH</span>
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider">Input Data</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-sm"></i>
+        </a>
+      </div>
+
+      <!-- Pesan Saat Pencarian Tidak Ditemukan -->
+      <div id="no-results" class="hidden text-center py-8 flex flex-col items-center gap-2 text-slate-400">
+        <i class="fa-regular fa-folder-open text-3xl"></i>
+        <p class="text-sm font-medium">Tautan tidak ditemukan</p>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-[11px] text-slate-400 dark:text-slate-500 relative z-10">
+      <p>© <span id="current-year">2026</span> IRMAWATI, S.Pd. Seluruh hak cipta dilindungi.</p>
+      <p class="mt-1">Dibuat khusus untuk UPT SPF SMP Negeri 3 Makassar</p>
+    </footer>
+
+    <!-- Notifikasi Toast (Pengganti alert()) -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 glass-card border border-indigo-500/20 px-5 py-3 rounded-full text-xs font-semibold shadow-xl flex items-center gap-2 text-indigo-600 dark:text-indigo-400 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 z-50">
+      <i class="fa-solid fa-circle-check text-sm text-indigo-500"></i>
+      <span id="toast-message">Tautan disalin ke papan klip!</span>
+    </div>
+
+    <!-- Logika Interaktif JS -->
+    <script>
+      // Inisialisasi Tahun Dinamis
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      // Penanganan Error Gambar (Fallback Monogram Gradien Premium)
+      function handleImageError() {
+        const img = document.getElementById('profile-img');
+        const parent = img.parentElement;
+        parent.innerHTML = `
+          <div class="w-full h-full bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white text-3xl font-extrabold tracking-wider">
+            I
+          </div>
+        `;
+      }
+
+      // Filter Berdasarkan Kategori
+      let currentCategory = 'all';
+      function filterCategory(category) {
+        currentCategory = category;
+        
+        // Update styling tombol tab
+        const tabs = document.querySelectorAll('.category-tab');
+        tabs.forEach(tab => {
+          tab.className = "category-tab px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 bg-white/60 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300";
+        });
+
+        const activeTab = document.getElementById(`tab-${category}`);
+        if (activeTab) {
+          activeTab.className = "category-tab px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 bg-indigo-600 text-white shadow-md shadow-indigo-500/20";
+        }
+
+        // Jalankan pemfilteran tautan
+        filterLinks();
+      }
+
+      // Filter Pencarian & Kategori Gabungan
+      function filterLinks() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const cards = document.querySelectorAll('.link-card');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const title = card.querySelector('span.font-semibold').textContent.toLowerCase();
+          const category = card.getAttribute('data-category');
+          
+          // Cek kecocokan kategori dan kecocokan kata kunci pencarian
+          const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+          const matchesSearch = title.includes(query);
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Tampilkan pesan kosong jika tidak ada tautan yang cocok
+        const noResults = document.getElementById('no-results');
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+
+      // Toggle Dark / Light Mode
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const icon = document.getElementById('theme-icon');
+        
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          icon.className = 'fa-solid fa-moon';
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          icon.className = 'fa-solid fa-sun';
+        }
+      }
+
+      // Set Tema Saat Memuat Halaman Pertama Kali
+      (function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const icon = document.getElementById('theme-icon');
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+          if (icon) icon.className = 'fa-solid fa-sun';
+        } else {
+          document.documentElement.classList.remove('dark');
+          if (icon) icon.className = 'fa-solid fa-moon';
+        }
+      })();
+
+      // Tampilkan Toast Notifikasi Kustom (Lebih Indah dibanding alert biasa)
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        
+        toastMsg.textContent = message;
+        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        
+        setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        }, 2500);
+      }
+
+      // Fungsi Salin Tautan / Bagikan Profil
+      function shareProfile() {
+        const dummyUrl = window.location.href;
+        
+        // Buat elemen input sementara untuk menyalin teks (lebih stabil di berbagai iFrame/perangkat)
+        const dummyInput = document.createElement('input');
+        document.body.appendChild(dummyInput);
+        dummyInput.value = dummyUrl;
+        dummyInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummyInput);
+
+        showToast('Tautan profil disalin ke papan klip!');
+      }
+    </script>
+  </body>
+</html>
